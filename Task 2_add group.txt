@@ -1,0 +1,51 @@
+There are specific access levels for users defined by the xFusionCorp Industries system admin team. Rather than providing access levels to every individual user, the team has decided to create groups with required access levels and add users to that groups as needed. See the following requirements:
+
+
+
+a. Create a group named nautilus_noc in all App servers in Stratos Datacenter.
+
+
+b. Add the user jarod to nautilus_noc group in all App servers. (create the user if doesn't exist).
+#########################################################################
+thor@jump_host ~$ ssh tony@stapp01
+The authenticity of host 'stapp01 (172.16.238.10)' can't be established.
+ECDSA key fingerprint is SHA256:/oTNL69mhuscOAFMhYvuzJbFAz0RIFI7Rw/vpfB8UKw.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added 'stapp01,172.16.238.10' (ECDSA) to the list of known hosts.
+tony@stapp01's password: 
+[tony@stapp01 ~]$ sudo su
+
+We trust you have received the usual lecture from the local System
+Administrator. It usually boils down to these three things:
+
+    #1) Respect the privacy of others.
+    #2) Think before you type.
+    #3) With great power comes great responsibility.
+
+[sudo] password for tony: 
+[root@stapp01 tony]# cd /etc
+[root@stapp01 etc]# ls -la
+total 1292
+[root@stapp01 etc]# cd /etc/group
+bash: cd: /etc/group: Not a directory
+[root@stapp01 etc]# getent group nautilus_noc [check the group exist or not ]
+[root@stapp01 etc]# groupadd nautilus_noc [create group]
+[root@stapp01 etc]# getent group nautilus_noc [check the group]
+nautilus_noc:x:1002:
+[root@stapp01 etc]# id jarod [check the user]
+id: 'jarod': no such user
+[root@stapp01 etc]# useradd -u jarod 
+useradd: invalid user ID 'jarod'
+[root@stapp01 etc]# cd /home
+[root@stapp01 home]# useradd -u jarod
+[root@stapp01 /]# cd home
+[root@stapp01 home]# cd ..
+[root@stapp01 /]# cd ~
+[root@stapp01 ~]# useradd -u jarod
+useradd: invalid user ID 'jarod'
+[root@stapp01 home]# ls -la
+total 20
+[root@stapp01 home]# sudo usermod -aG nautilus_noc jarod
+[root@stapp01 home]# groups jarod
+jarod : jarod nautilus_noc
+[root@stapp01 home

@@ -1,0 +1,15 @@
+The System admin team of xFusionCorp Industries has installed a backup agent tool on all app servers. As per the tool's requirements they need to create a user with a non-interactive shell.
+
+
+Therefore, create a user named jim with a non-interactive shell on the App Server 2.
+
+
+
+[root@stapp02 steve]# useradd -s /bin/false jim
+
+Or 
+sudo useradd -s /sbin/nologin jim
+
+
+what is  non-interactive shell
+A non-interactive shell in Linux is a shell session that does not provide an interactive command-line interface for user interaction. Unlike interactive shells, which allow users to execute commands and receive immediate feedback, non-interactive shells typically have limited functionality and are often used for specific purposes such as running scripts or performing automated tasks.

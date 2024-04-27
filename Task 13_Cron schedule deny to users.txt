@@ -1,0 +1,29 @@
+To stick with the security compliances, the Nautilus project team has decided to apply some restrictions on crontab access so that only allowed users can create/update the cron jobs. Limit crontab access to below specified users on App Server 1.
+
+
+Allow crontab access to rose user and deny the same to garrett user.
+
+
+id rose
+id garrett
+sudo su -
+#echo “rose ” >> /etc/cron.allow       [ rose name is given permission by echo command and append to cron.allow ]
+#echo “garrett ” >> /etc/cron.deny  [ garrett name is denied by echo command and append to cron.deny
+systemctl restart crond.service
+systemctl status crond.service
+
+Or
+
+touch /etc/cron.allow    [create file cron.allo]
+touch /etc/cron.deny     [create file cron.deny]
+
+vi /etc/cron.allow     
+rose                               
+vi /etc/cron.deny
+garrett 
+systemctl restart crond.service
+systemctl status crond.service
+
+
+
+

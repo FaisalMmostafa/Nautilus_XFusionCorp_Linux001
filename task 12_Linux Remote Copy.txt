@@ -1,0 +1,40 @@
+One of the Nautilus developers has copied confidential data on the jump host in Stratos DC. That data must be copied to one of the app servers. Because developers do not have access to app servers, they asked the system admins team to accomplish the task for them.
+
+
+Copy /tmp/nautilus.txt.gpg file from jump server to App Server 2 at location /home/code.
+
+Soln:
+
+root@jump_host /home/thor# cd /tmp
+root@jump_host /tmp# ls -la nautilus.txt.gpg
+-rw-r--r-- 1 root root  105 Apr 21 11:30 nautilus.txt.gpg
+
+
+root@jump_host /home/thor# scp /tmp/nautilus.txt.gpg  steve@stapp02:/home/code/
+steve@stapp02's password: 
+root@jump_host ~# scp /tmp/nautilus.txt.gpg  steve@stapp02:/tmp
+steve@stapp02's password: 
+nautilus.txt.gpg                                    100%  105    98.4KB/s   00:00    
+root@jump_host ~# scp /tmp/nautilus.txt.gpg  steve@stapp02:/home/code
+steve@stapp02's password: 
+nautilus.txt.gpg                                    100%  105    80.1KB/s   00:00    
+root@jump_host ~# ssh steve@stapp02
+steve@stapp02's password: 
+Last login: Sun Apr 21 11:44:12 2024 from 172.16.238.3
+[steve@stapp02 ~]$ sudo su
+[sudo] password for steve: 
+[root@stapp02 steve]# cd /home
+[root@stapp02 home]# ls 
+ansible  code  steve
+
+[root@stapp02 home]# cd code
+[root@stapp02 code]# ls -la
+total 12
+drwxrwxrwx 2 root  root  4096 Apr 21 12:01 .
+drwxr-xr-x 1 root  root  4096 Apr 21 11:30 ..
+-rw-r--r-- 1 steve steve  105 Apr 21 12:01 nautilus.txt.gpg
+[root@stapp02 code]# ^C
+[root@stapp02 code]#
+
+
+

@@ -1,0 +1,32 @@
+During the daily standup, it was pointed out that the timezone across Nautilus Application Servers in Stratos Datacenter doesn't match with that of the local datacenter's timezone, which is Pacific/Fiji.
+
+
+Correct the mismatch.
+
+
+
+[root@stapp03 banner]# timedatectl
+               Local time: Mon 2024-04-22 09:44:46 UTC
+           Universal time: Mon 2024-04-22 09:44:46 UTC
+                 RTC time: n/a
+                Time zone: Etc/UTC (UTC, +0000)
+System clock synchronized: yes
+              NTP service: n/a
+          RTC in local TZ: no
+
+
+[root@stapp03 banner]# timedatectl set-timezone Pacific/Fiji
+
+[root@stapp03 banner]# timedatectl
+               Local time: Mon 2024-04-22 21:45:32 +12
+           Universal time: Mon 2024-04-22 09:45:32 UTC
+                 RTC time: n/a
+                Time zone: Pacific/Fiji (+12, +1200)
+System clock synchronized: yes
+              NTP service: n/a
+          RTC in local TZ: no
+[root@stapp03 banner]#
+
+
+
+

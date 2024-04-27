@@ -1,0 +1,12 @@
+
+
+The system admins team of xFusionCorp Industries has set up a new tool on all app servers, as they have a requirement to create a service user account that will be used by that tool.
+
+
+Create a user named john in App Server 3 without a home directory.
+
+1.	Use the command ‘chage’ not change. 
+[root@stapp01 tony]# sudo chage -E 2024-03-28 kareem  
+
+2.	Verify the user expiry of account 
+[root@stapp01 tony]# sudo chage -1 kareem
