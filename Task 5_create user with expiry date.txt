@@ -5,8 +5,36 @@ The system admins team of xFusionCorp Industries has set up a new tool on all ap
 
 Create a user named john in App Server 3 without a home directory.
 
-1.	Use the command ‘chage’ not change. 
-[root@stapp01 tony]# sudo chage -E 2024-03-28 kareem  
+[root@stapp01 ~]# id john
 
-2.	Verify the user expiry of account 
-[root@stapp01 tony]# sudo chage -1 kareem
+id: john: no such user
+
+[root@stapp01 ~]# cat /etc/passwd |grep john
+
+[root@stapp01 ~]#
+[root@stapp01 ~]# useradd -M john
+
+[root@stapp01 ~]#
+
+
+5.  Validate the task by listing the file exist in  Home directory   
+
+[root@stapp01 ~]# id john
+
+uid=1002(john) gid=1002(john) groups=1002(john)
+
+[root@stapp01 ~]#
+
+[root@stapp01 ~]# cat /etc/passwd |grep john
+
+john:x:1002:1002::/home/john:/bin/bash
+
+[root@stapp01 ~]#
+
+[root@stapp01 ~]# ll /home
+
+total 8
+
+drwx------ 1 ansible ansible 4096 Oct 15  2019 ansible
+
+drwx------ 1 tony    tony    4096 Jan 25  2020 tony
